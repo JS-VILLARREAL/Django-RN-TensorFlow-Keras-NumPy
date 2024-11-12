@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% block content %}
+
+<p>
+  Para el ejemplo, utilizaremos las compuertas XOR. Si no las conoces o no las
+  recuerdas, funcionan de la siguiente manera: Tenemos dos entradas binarias (1
+  ó 0) y la salida será 1 sólo si una de las entradas es verdadera (1) y la otra
+  falsa (0). Es decir que de cuatro combinaciones posibles, sólo dos tienen
+  salida 1 y las otras dos serán 0, como vemos aquí:
+</p>
+
+<ul>
+  <li>XOR(0, 0) = 0</li>
+  <li>XOR(0, 1) = 1</li>
+  <li>XOR(1, 0) = 1</li>
+  <li>XOR(1, 1) = 0</li>
+</ul>
+<h3>Resultados de la compuerta XOR usando Red Neuronal</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entrada 1</th>
+      <th>Entrada 2</th>
+      <th>Salida esperada</th>
+      <th>Salida obtenida</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in results %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+      <!-- Entradas con color gris -->
+      <td>{{ result.entrada_1 }}</td>
+      <td>{{ result.entrada_2 }}</td>
+      <!-- Salida esperada con color naranja -->
+      <td class="expected">{{ result.salida_esperada }}</td>
+      <!-- Salida obtenida con color verde -->
+      <td class="predicted">
+        {% if result.prediccion_obtenida >= 0.5 %} 1 {% else %} 0 {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<style>
+  p {
+    color: #333;
+    width: 60%;
+    margin: 0 auto;
+    line-height: 1.6;
+    padding-bottom: 2%;
+  }
+
+  ul {
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    justify-content: space-around;
+  }
+
+  h3 {
+    text-align: center;
+    color: #333;
+  }
+
+  table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  tr {
+    border-bottom: 1px solid #f2f2f2;
+    background-color: #535050;
+    color: white;
+  }
+
+  th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #0b7cd8;
+    color: white;
+  }
+
+  td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #918c8c;
+    color: white;
+    font-weight: bold;
+  }
+
+  .expected {
+    background-color: orange;
+  }
+
+  .predicted {
+    background-color: green;
+  }
+
+  .row1 {
+    background-color: #f9f9f9;
+  }
+  .row2 {
+    background-color: #ffffff;
+  }
+</style>
+
+{% endblock %}
